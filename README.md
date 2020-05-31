@@ -40,6 +40,6 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 ### Instructions
 
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
+Follow the instructions in `Navigation.ipynb` in the `VanillaDQN` foler to get started with training your own agent! Inside the folder, a pre-trained set of weights had already been saved as `DQNcheckpoint.pth`. Simply follow the code to load in the weights and watch the agent perform if you don't want to spend time training the agent. Feel free to make edits to my code to improve the agent's performance!
 
 (_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.

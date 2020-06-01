@@ -25,8 +25,9 @@ UPDATE_EVERY = 4        # how often should the network be updated.
 ## Plot of Rewards
 
 Thought I trained the agent for 2000 episodes, the environment was solved at around 500 episodes. The average score peaks at around 900 episodes, reaching 16.58.  
-<img src="Vanilla DQN/PlotOfRewards.png">
 
+[image1]: PlotOfRewards.png "rewards"
+![Rewards][image1]
 
 
 ## Ideas for Future Work

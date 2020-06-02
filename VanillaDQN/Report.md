@@ -10,7 +10,9 @@ For this task, I have implemented a Vanilla Deep Q-Network, an algorithm that co
 
 Though it was possible to represent action-value function on a discrete state space using the Q-table, the state space could be continuous in real life and a Q-table would not be suffice. Hence, there was a need to generalize and apply RL techniques on a continuous scale of state space. Function approximation was then introduced to represent state values and action values by combination of their features and weights. Utilizing Gradient Descent for linear function approximation or Neural Networks for non-linear function approximation, one can nudge the weights and minimize the difference between the true value function and the approximated value function (basically a numerical optimization problem at this point).
 
-PICTURE
+<img src="Images/1.png">
+
+
 
 The Deep Q-Network was then movivated as we can make use of the powerful neural networks(NN) and employ them as non-linear function approximators. Observations from the environments are passed into the NN, and a single output for each valid action is outputted. In this task, DQN takes in a discrete state space of size 37 as input, it can, however, be modified to take in raw pixels as input. 
 

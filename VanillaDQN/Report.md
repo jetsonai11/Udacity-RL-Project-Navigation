@@ -56,8 +56,29 @@ UPDATE_EVERY = 4        # how often should the network be updated.
 ```
 
 ## Plot of Rewards
+#### Baseline
+Prior to training, the baseline of the agent's performance was initiated with the code provided below. The agent takes random actions and has no knowledge about the environment since it has not experienced any interactions with the environment yet.
+``` python
+env_info = env.reset(train_mode=False)[brain_name] # reset the environment
+state = env_info.vector_observations[0]            # get the current state
+score = 0                                          # initialize the score
+while True:
+    action = np.random.randint(action_size)        # select an action
+    env_info = env.step(action)[brain_name]        # send the action to the environment
+    next_state = env_info.vector_observations[0]   # get the next state
+    reward = env_info.rewards[0]                   # get the reward
+    done = env_info.local_done[0]                  # see if episode has finished
+    score += reward                                # update the score
+    state = next_state                             # roll over the state to next time step
+    if done:                                       # exit loop if episode finished
+        break
 
-Thought I trained the agent for 2000 episodes, the environment was solved at around 500 episodes. The average score peaks at around 900 episodes, reaching 16.58.  
+print("Score: {}".format(score))
+```
+This results in a performance score of 0. However, our goal is to improve the agent's performance and trains it until it can reach an average score of at least 13.0 over 100 consecutive episodes.
+
+#### After Training 
+Though I trained the agent for 2000 episodes, the environment was solved at around 500 episodes. The average score peaks at around 900 episodes, reaching 16.58.  
 
 [image1]: PlotOfRewards.png "rewards"
 ![Rewards][image1]

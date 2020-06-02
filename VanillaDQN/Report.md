@@ -10,7 +10,7 @@ For this task, I have implemented a Vanilla Deep Q-Network, an algorithm that co
 
 Though it was possible to represent action-value function on a discrete state space using the Q-table, the state space could be continuous in real life and a Q-table would not be suffice. Hence, there was a need to generalize and apply RL techniques on a continuous scale of state space. Function approximation was then introduced to represent state values and action values by combination of their features and weights. Utilizing Gradient Descent for linear function approximation or Neural Networks for non-linear function approximation, one can nudge the weights and minimize the difference between the true value function and the approximated value function (basically a numerical optimization problem at this point).
 
-<img src="Images/1.png">
+<img src="Images/1.jpg">
 
 
 

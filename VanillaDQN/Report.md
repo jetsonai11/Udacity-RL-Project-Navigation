@@ -2,30 +2,29 @@
 
 ## Overview
 
-The agent was trained to collect yellow bananas(earns a reward of +1) while trying to avoid blue bananas(earns a reward of -1). It learns from its interaction with the environment and seeks to maximize the expected cumulative reward by estimating the optimal action-value function at each state to discover an optimal policy and follow it. This task can be achieved by using either Monte Carlo Prediction Methods or Temporal-Difference Methods such as Q-Learning:
+The agent was trained to collect yellow bananas(earns a reward of +1) while trying to avoid blue bananas(earns a reward of -1). It learns from its interaction with the environment and seeks to maximize the expected cumulative reward by estimating the optimal action-value function at each state to discover an optimal policy and follow it. This task can be achieved by using either Monte Carlo Prediction Methods or Temporal-Difference Methods such as Q-Learning. In Q-Learning, the action-value function can be expanded to a function of the discount factor gamma and future rewards:
+
+![](12.png)
 
 For this task, I have implemented a Vanilla Deep Q-Network, an algorithm that combines TD Methods and neural networks in Deep Learning, to train the agent to collect bananas. 
 
 ## Learning Algorithm
 
-Though it was possible to represent action-value function on a discrete state space using the Q-table, the state space could be continuous in real life and a Q-table would not be suffice. Hence, there was a need to generalize and apply RL techniques on a continuous scale of state space. Function approximation was then introduced to represent state values and action values by combination of their features and weights. Utilizing Gradient Descent for linear function approximation or Neural Networks for non-linear function approximation, one can nudge the weights and minimize the difference between the true value function and the approximated value function (basically a numerical optimization problem at this point).
+Though it was possible to represent action-value function on a discrete state space using the Q-table, the state space could be continuous in real life and a Q-table would not be suffice. Hence, there was a need to generalize and apply RL techniques on a continuous scale of state space. Function approximation was then introduced to represent state values and action values by combination of their features and weights. Utilizing Gradient Descent for linear function approximation or Neural Networks for non-linear function approximation, one can nudge the weights and minimize the difference between the true value function and the approximated value function (basically a numerical optimization problem at this point). In DQN, this task would be to minimize the TD error, which is the difference between the TD target and the current estimate value. 
 
-![](1.jpg)
+![](5.jpg)
 
 The Deep Q-Network was then movivated as we can make use of the powerful neural networks(NN) and employ them as non-linear function approximators. Observations from the environments are passed into the NN, and a single output for each valid action is outputted. In this task, DQN takes in a discrete state space of size 37 as input, it can, however, be modified to take in raw pixels as input. 
 
 ![](2.PNG)
 
-
 However, RL is proven by the original author of the DQN paper to be unstable and will even diverge when using a non-linear function approximator, such as an NN, to represent the action-value function. Solutions such as the biologically-inspired technique called 'experienced replay' and 'fixed Q-targets' were proposed to fix this issue. In this task, I have implemented experienced replay, in which I store tuples of previous state-action pairs in a replay buffer(of size 100,000) and samples these previous information(in a batch of size 64) randomly throughout the process of learning to help the agent learns from past experience.  
 
 ![](3.PNG)
 
-
 In addition to experienced replay, I implemented a soft update process in my code as well. The motivation behind this is the problem of moving target, resulting a TD error that is not likely to change much as the agent learns, since both the TD target and the current value depends on the weights. A solution to this is to hold the weights of the TD target constant and update the current value first. Only after 4 episodes the TD target will then be allowed to update. 
 
 ![](4.jpg)
-![](5.PNG)
 
 
 I have also implemented the epsilon-greedy policy for this task as I tackle the exploration-exploitation dilemma. I tends to let the agent explores and tries out different paths in the beginning. As time goes on, it should learn from its interaction with the environment and begin to trust its experience to decide the optimal path. Therefore, I have set the starting value to be 1.0 such that the agent follows an equiprobable random policy at first. I have then set the decay rate for epsilon to be 0.995 and the final value for epsilon after decaying to be 0.01 so that epsilon will decay gradually over time.

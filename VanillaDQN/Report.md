@@ -24,12 +24,12 @@ This task would then be to minimize the TD error, which is the difference betwee
 ![](MSE.PNG)
 
 #### Experienced Replay
-However, RL is proven by the original author of the DQN paper to be unstable and will even diverge when using a non-linear function approximator, such as an NN, to represent the action-value function. Solutions such as the biologically-inspired technique called 'experienced replay' and 'fixed Q-target' were proposed to fix this issue. In this task, I have implemented experienced replay, in which I store tuples of previous state-action pairs in a replay buffer(of size 100,000) and samples these previous information(in a batch of size 64) randomly throughout the process of learning to help the agent learns from past experience.  
+However, RL is proven by the original author of the DQN paper to be unstable and will even diverge when using a non-linear function approximator, such as an NN, to represent the action-value function. Solutions such as the biologically-inspired technique called 'experienced replay' and 'fixed Q-target' were proposed to fix this issue. In this task, I have implemented experienced replay, in which I store tuples of previous state-action pairs in a replay buffer(of size 100,000) and samples these previous information(in a batch of size 64) randomly throughout the process of learning to help the agent learns from past experience. This helps prevent the oscillation and divergence of action values, since the naive DQN often become biased by the correlations between sequential experience tuples. The implementation of `experienced replay` can be found in the `agent.py` file.
 
 ![](3.PNG)
 
 #### Fixed Q-Target
-In addition to experienced replay, I implemented a soft update process in my code as well. The motivation behind this is the problem of moving target, resulting a TD error that is not likely to change much as the agent learns, since both the TD target and the current value depends on the weights. A solution to this is to hold the weights of the TD target constant and update the current value first. Only after 4 episodes the TD target will then be allowed to update. 
+In addition to experienced replay, I implemented a soft update process in my code as well. The motivation behind this is the problem of moving target, resulting a TD error that is not likely to change much as the agent learns, since both the TD target and the current value depends on the weights. A solution to this is to hold the weights of the TD target constant and update the current value first. Only after 4 episodes the TD target will then be allowed to update. The implementation of `fixed Q-target` can be found in the `agent.py` file.
 
 ![](4.jpg)
 
@@ -39,7 +39,7 @@ I have also implemented the epsilon-greedy policy for this task as I tackle the 
 
 ## Choice of Hyperparameters
 
-The network architecture is consisted of: 2 hidden layers, each having 64 hidden units; 1 output layer with a single output for each valid action.
+The network architecture is consisted of: 2 hidden layers, each having 64 hidden units; 1 output layer with a single output for each valid action. The network structure can be found in the `model.py` file.
 
 Following hyper parameters where used:
 ``` python
